@@ -48,18 +48,18 @@ jobs:
           docker images
           docker tag crpi-dkvl22hq2vvrse0v.cn-hangzhou.personal.cr.aliyuncs.com/masx201/deno-ddns-over-https-client-deno-dns-over-https-server:1.8.2 masx200/deno-ddns-over-https-client-deno-dns-over-https-server:1.8.2
 
-      - run: sh build.sh
+      - run: bash -x build.sh
       - run: docker images
 
         #   - name: Build and save
         #
         #     run: docker save masx200/ubuntu-maven-gradle-msopenjdk:latest | gzip > ./dist/masx200-ubuntu-maven-gradle-msopenjdk-latest-image.tgz
 
-    #   - name: Release
-    #     uses: softprops/action-gh-release@v2
-    #     if: startsWith(github.ref, 'refs/heads/master')
-    #     with:
-    #       tag_name: Continuous-integration-${{ github.sha }}
-    #       #token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
-    #       files: |
-    #         ./dist/*.tgz
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/heads/master')
+        with:
+          tag_name: Continuous-integration-${{ github.sha }}
+          #token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
+          files: |
+            ./build/*.tgz
