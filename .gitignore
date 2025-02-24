@@ -1,0 +1,5 @@
+build/
+deno-dns-over-https-server/
+deno-ddns-over-https-client/
+deno-dns-over-https-server-main/
+deno-ddns-over-https-client-main/
