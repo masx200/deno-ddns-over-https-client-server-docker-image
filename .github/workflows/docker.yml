@@ -1,6 +1,11 @@
 name: Docker Image CI
 
 on:
+  schedule:
+    - cron: "0 14 * * 2" # 每周二（星期二）北京时间22:00执行
+    - cron: "0 11 * * 5" # 每周五（星期五）北京时间19:00执行
+    - cron: "0 5 * * *" # 每天北京时间13:00执行
+  workflow_dispatch:
   push:
     branches: ["master"]
   pull_request:
