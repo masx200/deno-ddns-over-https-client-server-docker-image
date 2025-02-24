@@ -3,3 +3,21 @@ deno-dns-over-https-server/
 deno-ddns-over-https-client/
 deno-dns-over-https-server-main/
 deno-ddns-over-https-client-main/
+# Build and Release Folders
+bin-debug/
+bin-release/
+[Oo]bj/
+[Bb]in/
+
+# Other files and folders
+.settings/
+
+# Executables
+*.swf
+*.air
+*.ipa
+*.apk
+
+# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
+# should NOT be excluded as they contain compiler settings and other important
+# information for Eclipse / Flash Builder.
