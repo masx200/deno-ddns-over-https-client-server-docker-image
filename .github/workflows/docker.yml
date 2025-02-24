@@ -8,9 +8,20 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        node-version: [22.x]
     runs-on: ubuntu-latest
 
     steps:
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
       - uses: actions/checkout@v4
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -24,7 +35,7 @@ jobs:
       - name: Build the Docker image
         run: |
           sudo apt install dos2unix -y   git
-          sudo apt clean 
+          sudo apt clean
           bash -c "find . -maxdepth 1 -type f -name \"*.sh\" -exec dos2unix {} \;"
         #   sh build.sh
       - run: mkdir -pv ./build
@@ -35,10 +46,14 @@ jobs:
           docker load -i masx201.deno-ddns-over-https-client-deno-dns-over-https-server.1.8.2.image.tgz
           rm -rfv masx200-docker-squash-1.2.2-image.tgz masx201.deno-ddns-over-https-client-deno-dns-over-https-server.1.8.2.image.tgz
           docker images
+          docker tag crpi-dkvl22hq2vvrse0v.cn-hangzhou.personal.cr.aliyuncs.com/masx201/deno-ddns-over-https-client-deno-dns-over-https-server:1.8.2 masx200/deno-ddns-over-https-client-deno-dns-over-https-server:1.8.2
 
-    #   - run: docker images
-    #   - name: Build and save
-    #     run: docker save masx200/ubuntu-maven-gradle-msopenjdk:latest | gzip > ./dist/masx200-ubuntu-maven-gradle-msopenjdk-latest-image.tgz
+      - run: sh build.sh
+      - run: docker images
+
+        #   - name: Build and save
+        #
+        #     run: docker save masx200/ubuntu-maven-gradle-msopenjdk:latest | gzip > ./dist/masx200-ubuntu-maven-gradle-msopenjdk-latest-image.tgz
 
     #   - name: Release
     #     uses: softprops/action-gh-release@v2
