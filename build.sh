@@ -31,5 +31,6 @@ version="$VER_LATEST1-$VER_LATEST2"
 echo "version=$version"
 docker build -t "masx200/deno-ddns-over-https-client-deno-dns-over-https-server:temp" .
 docker run --rm -v /var/run/docker.sock:/var/run/docker.sock masx200/docker-squash:1.2.2 docker-squash -v -t "masx200/deno-ddns-over-https-client-deno-dns-over-https-server:$version" "masx200/deno-ddns-over-https-client-deno-dns-over-https-server:temp"
-docker save "masx200/deno-ddns-over-https-client-deno-dns-over-https-server:$version" |gzip > "./build/masx200-deno-ddns-over-https-client-deno-dns-over-https-server-$version.tar.gz"
+mkdir -pv ./build
+docker save "masx200/deno-ddns-over-https-client-deno-dns-over-https-server:$version" |gzip > "./build/masx200-deno-ddns-over-https-client-deno-dns-over-https-server-$version.tgz"
 

@@ -28,4 +28,4 @@ RUN rm -fvr /root/deno-dns-over-https-server-main/node_modules && rm -fvr /root/
 
 RUN rm -fvr /root/deno-ddns-over-https-client-main/node_modules  && cd /root/deno-ddns-over-https-client-main && deno cache --allow-import "run_ddns_interval_client.ts" && rm -fvr /root/deno-ddns-over-https-client-main/deno.lock
 
-RUN rm -frv /deno/*
+RUN rm -frv /deno/* && npx -y cnpm i -g cross-env
