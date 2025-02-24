@@ -15,6 +15,6 @@ deno-ddns-over-https-client+server-image
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+```shell
+docker pull masx200/eno-ddns-over-https-client-deno-dns-over-https-server
+```
