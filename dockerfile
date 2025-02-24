@@ -1,4 +1,4 @@
-FROM masx200/deno-ddns-over-https-client-deno-dns-over-https-server:1.8.2
+FROM masx200/deno-ddns-over-https-client-deno-dns-over-https-server:2.3.1-2.1.1
 
 WORKDIR /root
 COPY ./entry.sh /root/entry.sh

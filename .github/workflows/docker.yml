@@ -41,12 +41,12 @@ jobs:
       - run: mkdir -pv ./build
       - run: |
           wget -v -O masx200-docker-squash-1.2.2-image.tgz https://github.com/masx200/docker-squash-image/releases/download/Continuous-integration-b50a563d298e18a52bc36153d0ad99c5292d5606/masx200-docker-squash-1.2.2-image.tgz
-          wget -v -O masx201.deno-ddns-over-https-client-deno-dns-over-https-server.1.8.2.image.tgz https://github.com/masx200/deno-ddns-over-https-client-server-image/releases/download/1.8.2/masx201.deno-ddns-over-https-client-deno-dns-over-https-server.1.8.2.image.tgz
+          wget -v -O masx201.deno-ddns-over-https-client-deno-dns-over-https-server.2.3.1-2.1.1.image.tgz https://github.com/masx200/deno-ddns-over-https-client-server-image/releases/download/Continuous-integration-d33d6517fa3a5a3a8050eab298abba243a16ebc4/masx200-deno-ddns-over-https-client-deno-dns-over-https-server-2.3.1-2.1.1.tgz
           docker load -i masx200-docker-squash-1.2.2-image.tgz
-          docker load -i masx201.deno-ddns-over-https-client-deno-dns-over-https-server.1.8.2.image.tgz
+          docker load -i masx201.deno-ddns-over-https-client-deno-dns-over-https-server.2.3.1-2.1.1.image.tgz
           rm -rfv masx200-docker-squash-1.2.2-image.tgz masx201.deno-ddns-over-https-client-deno-dns-over-https-server.1.8.2.image.tgz
           docker images
-          docker tag crpi-dkvl22hq2vvrse0v.cn-hangzhou.personal.cr.aliyuncs.com/masx201/deno-ddns-over-https-client-deno-dns-over-https-server:1.8.2 masx200/deno-ddns-over-https-client-deno-dns-over-https-server:1.8.2
+          # docker tag crpi-dkvl22hq2vvrse0v.cn-hangzhou.personal.cr.aliyuncs.com/masx201/deno-ddns-over-https-client-deno-dns-over-https-server:1.8.2 masx200/deno-ddns-over-https-client-deno-dns-over-https-server:1.8.2
 
       - run: bash -x build.sh
       - run: docker images
