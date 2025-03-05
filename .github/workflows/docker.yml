@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   schedule:
-    - cron: "0 14 * * 2" # 每周二（星期二）北京时间22:00执行
-    - cron: "0 11 * * 5" # 每周五（星期五）北京时间19:00执行
-    - cron: "0 5 * * *" # 每天北京时间13:00执行
+    - cron: "0 14 * * 2"
+    - cron: "0 11 * * 5"
+    - cron: "0 5 * * *"
   workflow_dispatch:
   push:
     branches: ["master"]
@@ -42,7 +42,7 @@ jobs:
           sudo apt install dos2unix -y   git
           sudo apt clean
           bash -c "find . -maxdepth 1 -type f -name \"*.sh\" -exec dos2unix {} \;"
-        #   sh build.sh
+
       - run: mkdir -pv ./build
       - run: |
           wget -v -O masx200-docker-squash-1.2.2-image.tgz https://github.com/masx200/docker-squash-image/releases/download/Continuous-integration-b50a563d298e18a52bc36153d0ad99c5292d5606/masx200-docker-squash-1.2.2-image.tgz
@@ -51,20 +51,15 @@ jobs:
           docker load -i masx201.deno-ddns-over-https-client-deno-dns-over-https-server.2.3.1-2.1.1.image.tgz
           rm -rfv masx200-docker-squash-1.2.2-image.tgz masx201.deno-ddns-over-https-client-deno-dns-over-https-server.2.3.1-2.1.1.image.tgz
           docker images
-          # docker tag crpi-dkvl22hq2vvrse0v.cn-hangzhou.personal.cr.aliyuncs.com/masx201/deno-ddns-over-https-client-deno-dns-over-https-server:2.3.1-2.1.1 masx200/deno-ddns-over-https-client-deno-dns-over-https-server:2.3.1-2.1.1
 
       - run: bash -x build.sh
       - run: docker images
-
-        #   - name: Build and save
-        #
-        #     run: docker save masx200/ubuntu-maven-gradle-msopenjdk:latest | gzip > ./dist/masx200-ubuntu-maven-gradle-msopenjdk-latest-image.tgz
 
       - name: Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/heads/master')
         with:
           tag_name: Continuous-integration-${{ github.sha }}
-          #token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
+
           files: |
             ./build/*.tgz
